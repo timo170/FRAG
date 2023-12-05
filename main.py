@@ -24,6 +24,7 @@ import reprezentari as rep
 
 
 def program_start():
+    
     screen = Screen()
     screen.setup(width=1.0, height=0.88, startx=0, starty=0)
     canvas = screen.getcanvas()
@@ -34,8 +35,9 @@ def program_start():
     fileMenu.add_command(label="Iesire", command=df.exitProgram)
     meniu.add_cascade(label="Fisier", menu=fileMenu)
     reprezMenu=tk.Menu(meniu)
-    reprezMenu.add_command(label="Matrice adiacenta", command= lambda :rep.reprezentari('matrice') )
+    reprezMenu.add_command(label="Matrice adiacenta", command= lambda :rep.reprezentari('matrice'))
     reprezMenu.add_command(label="Liste adiacenta", command= lambda :rep.reprezentari('liste'))
+    reprezMenu.add_command(label="Matrice incidenta",command=lambda :rep.reprezentari('incidenta'))
     meniu.add_cascade(label="Reprezentari", menu=reprezMenu)
     canvas.master["menu"] = meniu
     turtle.mainloop()

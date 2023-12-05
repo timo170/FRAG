@@ -22,7 +22,7 @@ for i in range(0,nr_varfuri+1):
     matrice.append(lista)
 
 
-for j in range(2,nr_perechi +1):
+for j in range(2,nr_perechi +2):
     space_poz=config.graf[j].find(' ')
     v1=int(config.graf[j][space_poz:])
     v2=int(config.graf[j][:space_poz])

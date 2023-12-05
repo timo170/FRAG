@@ -6,13 +6,13 @@ import sys
 import shutil
 import tempfile
 import canvasvg
-import cairosvg
+#import cairosvg
 import config 
 
 t_desen=turtle.Turtle()
 t_matrice = turtle.Turtle()
 t_liste = turtle.Turtle()
-
+t_incidenta=turtle.Turtle()
 
 
 def deschide():
@@ -23,6 +23,7 @@ def deschide():
     filename = fd.askopenfile(title='Deschide un fisier', initialdir='/',filetypes=filetypes)
     r = 20
     config.graf = filename.readlines()
+    config.poz=-1
     print(config.graf)
     tip_graf=  config.graf[0][:len(config.graf[0])-1]
     space_poz= config.graf[1].find(' ')
@@ -35,11 +36,12 @@ def deschide():
     t_desen.reset()
     t_liste.clear()
     t_matrice.clear()
-    t_desen.speed(10)
+    t_incidenta.clear()
     for i in range(1,nr_varfuri+1):
         x = raza*math.sin(math.radians(i*unghi))
         y = raza*math.cos(math.radians(i*unghi))
         coordonate[i] = (x,y+r)
+        t_desen.speed(10)
         t_desen.penup()
         t_desen.goto(x, y)
         t_desen.pendown()
@@ -89,9 +91,9 @@ def salvare_pdf():
     tmpfile = os.path.join(tmpdir, 'tmp.svg')  # name of file to save SVG to
     ts = turtle.getscreen().getcanvas()
     canvasvg.saveall(tmpfile, ts)
-    with open(tmpfile) as svg_input, open(nameSav, 'wb') as png_output:
-        cairosvg.svg2pdf(bytestring=svg_input.read(),background_color="white", write_to=png_output)
-    shutil.rmtree(tmpdir)  # clean up temp file(s)
+    #with open(tmpfile) as svg_input, open(nameSav, 'wb') as png_output:
+        #cairosvg.svg2pdf(bytestring=svg_input.read(),background_color="white", write_to=png_output)
+    #shutil.rmtree(tmpdir)  # clean up temp file(s)
                
 def exitProgram():
     sys.exit('CORECT')
