@@ -6,11 +6,11 @@ from deschide_fisier import t_matrice, t_liste, t_incidenta
 import config
 
 def popupmsg_adiacenta():
-    popup = tk.Tk()
+    popup = tk.Toplevel()
     popup.wm_title("!")
     msg='adia'
     # Add label
-    my_label = HTMLLabel(popup, html="""
+    my_label = HTMLLabel(popup, html='''
             <b><h1>Reprezentarea prin matricea de adiacenţă:</h1></b>
             <p>Matricea de adiacenţă al unui graf de ordin n este o matrice pătratică de ordin n,</p>
             <img src="910839_orig.png">
@@ -19,11 +19,13 @@ def popupmsg_adiacenta():
                 <li><a href='https://www.geeksforgeeks.org/c-plus-plus/'>C++</a></li>
                 <li><a href='https://www.geeksforgeeks.org/java/'>Java</a></li>
             </ul>
-        """)
-    # label = ttk.Label(popup, text=msg, font=("Verdana",10, "normal"))
+        ''')
+    label = ttk.Label(popup, text=msg, font=("Verdana",10, "normal"))
+    label.pack()
     my_label.pack(side="top", fill="x", pady=10)
     B1 = ttk.Button(popup, text="Okay", command = popup.destroy)
     B1.pack()
+    
     popup.mainloop()
     
 def popupmsg_liste():
@@ -203,8 +205,42 @@ def reprezentari(type):
         t_incidenta.penup()
         t_incidenta.goto(dx,dy)
         t_incidenta.pendown()
-        
         t_incidenta.goto(dx,dy - nr_varfuri*20 + 10)
+
+    if type=="grade":
+        lista_ad = [[] for i in range(nr_varfuri+1)]
+        for i in range(2, nr_perechi+2):
+            space_poz= config.graf[i].find(' ')
+            varf1 = int(config.graf[i][:space_poz])
+            if i==nr_perechi+1:
+                varf2  = int(config.graf[i][space_poz:len(config.graf[i])])
+            else:
+                varf2  = int(config.graf[i][space_poz:len(config.graf[i])-1])
+            lista_ad[varf1].append(varf2)
+            if tip_graf == "neorientat":
+                lista_ad[varf2].append(varf1)
+        print(lista_ad)
+        
+       
+        dx=55-turtle.window_width() / 2 
+        dy=DY
+        t_liste.penup()
+        t_liste.goto(dx,dy)
+        t_liste.pendown()
+        t_liste.goto(dx,dy - nr_varfuri*20 +10 )
+        grade = [-1]
+        for i in range(1,nr_varfuri+1):
+            x = len(lista_ad[i])
+            grade.append(x)
+        print(grade)
+        for i in range(1,nr_varfuri+1):
+            dx=65-turtle.window_width() / 2
+            dy = DY- 15- (i-1)*20
+            t_liste.penup()
+            t_liste.goto(dx,dy)
+            t_liste.pendown()
+            t_liste.write("d("+str(i)+") = "+str(grade[i]), font=("Verdana",12, "normal"))
+        popupmsg_liste()
 
         
             

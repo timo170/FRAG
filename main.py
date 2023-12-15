@@ -15,6 +15,7 @@
 # https://github.com/tschoonj/GTK-for-Windows-Runtime-Environment-Installer
 # https://www.youtube.com/watch?v=p2Lws5CyioQ
 # https://www.geeksforgeeks.org/how-to-use-html-in-tkinter-python/
+# https://www.tutorialspoint.com/python/tk_toplevel.htm
 
 import tkinter as tk
 import turtle
@@ -38,6 +39,7 @@ def program_start():
     reprezMenu.add_command(label="Matrice adiacenta", command= lambda :rep.reprezentari('matrice'))
     reprezMenu.add_command(label="Liste adiacenta", command= lambda :rep.reprezentari('liste'))
     reprezMenu.add_command(label="Matrice incidenta",command=lambda :rep.reprezentari('incidenta'))
+    reprezMenu.add_command(label="Grade noduri",command=lambda :rep.reprezentari('grade'))
     meniu.add_cascade(label="Reprezentari", menu=reprezMenu)
     canvas.master["menu"] = meniu
     turtle.mainloop()
