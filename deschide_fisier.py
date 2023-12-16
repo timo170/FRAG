@@ -6,7 +6,7 @@ import sys
 import shutil
 import tempfile
 import canvasvg
-#import cairosvg
+import cairosvg
 import config 
 
 t_desen=turtle.Turtle()
@@ -91,9 +91,9 @@ def salvare_pdf():
     tmpfile = os.path.join(tmpdir, 'tmp.svg')  # name of file to save SVG to
     ts = turtle.getscreen().getcanvas()
     canvasvg.saveall(tmpfile, ts)
-    #with open(tmpfile) as svg_input, open(nameSav, 'wb') as png_output:
-        #cairosvg.svg2pdf(bytestring=svg_input.read(),background_color="white", write_to=png_output)
-    #shutil.rmtree(tmpdir)  # clean up temp file(s)
+    with open(tmpfile) as svg_input, open(nameSav, 'wb') as png_output:
+        cairosvg.svg2pdf(bytestring=svg_input.read(),background_color="white", write_to=png_output)
+    shutil.rmtree(tmpdir)  # clean up temp file(s)
                
 def exitProgram():
     sys.exit('CORECT')

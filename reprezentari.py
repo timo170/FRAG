@@ -98,7 +98,7 @@ def reprezentari(type):
         popupmsg_adiacenta()
     if type == 'liste':
         
-        lista_ad = [[] for i in range(nr_varfuri+1)]
+        lista_ad = [[] for i in range(nr_varfuri+1)]    
         for i in range(2, nr_perechi+2):
             space_poz= config.graf[i].find(' ')
             varf1 = int(config.graf[i][:space_poz])
@@ -208,38 +208,44 @@ def reprezentari(type):
         t_incidenta.goto(dx,dy - nr_varfuri*20 + 10)
 
     if type=="grade":
-        lista_ad = [[] for i in range(nr_varfuri+1)]
-        for i in range(2, nr_perechi+2):
-            space_poz= config.graf[i].find(' ')
-            varf1 = int(config.graf[i][:space_poz])
-            if i==nr_perechi+1:
-                varf2  = int(config.graf[i][space_poz:len(config.graf[i])])
-            else:
-                varf2  = int(config.graf[i][space_poz:len(config.graf[i])-1])
-            lista_ad[varf1].append(varf2)
-            if tip_graf == "neorientat":
-                lista_ad[varf2].append(varf1)
-        print(lista_ad)
         
-       
         dx=55-turtle.window_width() / 2 
         dy=DY
         t_liste.penup()
         t_liste.goto(dx,dy)
         t_liste.pendown()
         t_liste.goto(dx,dy - nr_varfuri*20 +10 )
-        grade = [-1]
-        for i in range(1,nr_varfuri+1):
-            x = len(lista_ad[i])
-            grade.append(x)
+        
+        grade=[]
+        grade = [[0,0] for i in range(nr_varfuri+1)]
+        if tip_graf=="neorientat":
+            for j in range(2,nr_perechi +2):
+                space_poz=config.graf[j].find(' ')
+                v1=int(config.graf[j][:space_poz])
+                v2=int(config.graf[j][space_poz:])
+                grade[v1][0]=grade[v1][0]+1
+                grade[v2][1]=grade[v2][1]+1
+        else:
+            for j in range(2,nr_perechi +2):
+                space_poz=config.graf[j].find(' ')
+                v1=int(config.graf[j][:space_poz])
+                v2=int(config.graf[j][space_poz:])
+                grade[v1][0]=grade[v1][0]+1
+                grade[v2][1]=grade[v2][1]+1
         print(grade)
+
         for i in range(1,nr_varfuri+1):
             dx=65-turtle.window_width() / 2
             dy = DY- 15- (i-1)*20
             t_liste.penup()
             t_liste.goto(dx,dy)
             t_liste.pendown()
-            t_liste.write("d("+str(i)+") = "+str(grade[i]), font=("Verdana",12, "normal"))
+            if tip_graf=="neorientat":
+                t_liste.write("d("+str(i)+") = "+str(grade[i][0]+grade[i][1]), font=("Verdana",12, "normal"))
+            else:
+                t_liste.write("d\u207A("+str(i)+") = "+str(grade[i][0])+" , "+"d\u207B("+str(i)+") = "+str(grade[i][1]) , font=("Verdana",12, "normal"))
+        
+        
         popupmsg_liste()
 
         

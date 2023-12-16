@@ -16,6 +16,9 @@
 # https://www.youtube.com/watch?v=p2Lws5CyioQ
 # https://www.geeksforgeeks.org/how-to-use-html-in-tkinter-python/
 # https://www.tutorialspoint.com/python/tk_toplevel.htm
+# https://www.geeksforgeeks.org/how-to-print-superscript-and-subscript-in-python/
+
+
 
 import tkinter as tk
 import turtle
