@@ -38,7 +38,7 @@ def deschide():
     t_matrice.clear()
     t_incidenta.clear()
     for i in range(1,nr_varfuri+1):
-        x = raza*math.sin(math.radians(i*unghi))
+        x = raza*math.sin(math.radians(i*unghi))+350
         y = raza*math.cos(math.radians(i*unghi))
         coordonate[i] = (x,y+r)
         t_desen.speed(10)
