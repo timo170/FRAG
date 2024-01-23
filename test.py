@@ -2,23 +2,18 @@ import pynliner
 from tkinter import ttk
 import tkinter as tk
 from tkhtmlview import HTMLLabel
-#https://www.tutorialspoint.com/python/tk_text.htm
-popup = tk.Toplevel()
-popup.geometry("500x500+250+70")
+from PIL import Image,ImageTk
+#https://stackoverflow.com/questions/35159861/multiple-lines-lable-in-tkinter
+#https://pythonguides.com/python-tkinter-image/
+popup = tk.Tk()
+popup.geometry("600x700+500+70")
 popup.wm_title("!")
-    
-    # Add label 
-html = '''<style> h5,p{ color:#ffcc00;}</style>
-            <b><h5 >Reprezentarea prin matricea de adiacenţă:</h5></b>
-            <p>Matricea de adiacenţă al unui graf de ordin n este o matrice pătratică de ordin n,</p>
-        
-            <img src="910839_orig.png">
-            '''
-p=pynliner.Pynliner().from_string(html).run()
-titlu=tk.Text(popup,str="Reprezentarea prin matricea de adiacenţă:",)    
-my_label = HTMLLabel(popup, html=p)
-my_label.pack(side="top", fill="x")
-B1 = ttk.Button(popup, text="Okay", command = popup.destroy)
-B1.pack(side='top',anchor="center")
+title = "Reprezentarea prin matricea de adiacenta:"
+p="Matricea de adiacenţă al unui graf de ordin n este o matrice pătratică de ordin n construita astfel:"
+tk.Label(popup,text=title,fg='green',font=('Arial',20)).grid(row=0)
+tk.Label(popup,text=p,font=('Arial',18),wraplength=600,justify=tk.LEFT).grid(row=1)
+imag=ImageTk.PhotoImage(file="910839_orig.png")
+tk.Label(popup,image=imag).grid(row=2) 
+ttk.Button(popup, text="Okay", command = popup.destroy).grid(row=3)
     
 popup.mainloop()

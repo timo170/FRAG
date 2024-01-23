@@ -44,6 +44,10 @@ def program_start():
     reprezMenu.add_command(label="Matrice incidenta",command=lambda :rep.reprezentari('incidenta'))
     reprezMenu.add_command(label="Grade noduri",command=lambda :rep.reprezentari('grade'))
     meniu.add_cascade(label="Reprezentari", menu=reprezMenu)
+    describeMenu=tk.Menu(canvas)
+    meniu.add_cascade(label="Descriere",menu=describeMenu)
+    describeMenu.add_command(label="Descriere",command= lambda :rep.descriere())
+    
     canvas.master["menu"] = meniu
     turtle.mainloop()
 
