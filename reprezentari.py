@@ -4,27 +4,6 @@ import tkinter as tk
 from tkhtmlview import HTMLLabel
 from deschide_fisier import t_matrice, t_liste, t_incidenta
 import config
-import pynliner
-
-def descriere():
-    popup = tk.Toplevel()
-    popup.geometry("500x500+250+70")
-    popup.wm_title("Descriere")
-
-    
-    popup.mainloop()
-    
-def popupmsg_liste():
-    popup = tk.Tk()
-    popup.wm_title("!")
-    msg='liste'
-    label = ttk.Label(popup, text=msg, font=("Verdana",10, "normal"))
-    label.pack(side="top", fill="x", pady=10)
-    B1 = ttk.Button(popup, text="Okay", command = popup.destroy)
-    B1.pack()
-    popup.mainloop()
-
-
 
 
 def reprezentari(type):
@@ -81,9 +60,8 @@ def reprezentari(type):
         t_matrice.goto(dx,dy)
         t_matrice.pendown()
         t_matrice.goto(dx,dy - nr_varfuri*20 + 10)
-        popupmsg_adiacenta()
+
     if type == 'liste':
-        
         lista_ad = [[] for i in range(nr_varfuri+1)]    
         for i in range(2, nr_perechi+2):
             space_poz= config.graf[i].find(' ')
@@ -126,10 +104,8 @@ def reprezentari(type):
             t_liste.goto(dx,dy)
             t_liste.pendown()
             t_liste.write(afisare[i], font=("Verdana",12, "normal"))
-        popupmsg_liste()
 
-    if type=="incidenta":
-        
+    if type=="incidenta": 
         dx=10-turtle.window_width() / 2
         dy=DY- 15 + nr_varfuri*5 -120
         t_incidenta.penup()
@@ -194,7 +170,6 @@ def reprezentari(type):
         t_incidenta.goto(dx,dy - nr_varfuri*20 + 10)
 
     if type=="grade":
-        
         dx=55-turtle.window_width() / 2 
         dy=DY
         t_liste.penup()
@@ -231,8 +206,6 @@ def reprezentari(type):
             else:
                 t_liste.write("d\u207A("+str(i)+") = "+str(grade[i][0])+" , "+"d\u207B("+str(i)+") = "+str(grade[i][1]) , font=("Verdana",12, "normal"))
         
-        
-        popupmsg_liste()
 
         
             

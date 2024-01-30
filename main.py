@@ -17,6 +17,8 @@
 # https://www.geeksforgeeks.org/how-to-use-html-in-tkinter-python/
 # https://www.tutorialspoint.com/python/tk_toplevel.htm
 # https://www.geeksforgeeks.org/how-to-print-superscript-and-subscript-in-python/
+# https://stackoverflow.com/questions/35159861/multiple-lines-lable-in-tkinter
+# https://pythonguides.com/python-tkinter-image/
 
 
 
@@ -25,7 +27,7 @@ import turtle
 from turtle import Screen
 import deschide_fisier as df
 import reprezentari as rep
-
+import descrieri as des
 
 def program_start():
     
@@ -46,8 +48,10 @@ def program_start():
     meniu.add_cascade(label="Reprezentari", menu=reprezMenu)
     describeMenu=tk.Menu(canvas)
     meniu.add_cascade(label="Descriere",menu=describeMenu)
-    describeMenu.add_command(label="Descriere",command= lambda :rep.descriere())
-    
+    describeMenu.add_command(label="Matricea de adiacență",command= lambda :des.adiacenta())
+    describeMenu.add_command(label="Lista de adiacență",command= lambda :des.lista())
+    describeMenu.add_command(label="Matricea de incidență",command= lambda :des.incidenta())
+    describeMenu.add_command(label="Grade noduri",command= lambda :des.grade())
     canvas.master["menu"] = meniu
     turtle.mainloop()
 
