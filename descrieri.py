@@ -44,7 +44,7 @@ def grade():
     popup.geometry("500x150+500+70")
     popup.wm_title("Gradele vârfurilor")
     title = "Gradele vârfurilor se calculează astfel:"
-    p="Pentru fiecare vârf x al grafului se numără lista vârfurilor y adiacente cu acesta (sau numărul de muchii incidente cu acesta)."
+    p="Pentru fiecare vârf x al grafului se determină numărul vârfurilor y adiacente cu acesta (sau numărul de muchii incidente cu acesta)."
     tk.Label(popup,text=title,fg='green',font=('Arial',18),wraplength=500,justify=tk.LEFT).grid(row=0)
     tk.Label(popup,text=p,font=('Arial',15),wraplength=500,justify=tk.LEFT).grid(row=1)
     ttk.Button(popup, text="Okay", command = popup.destroy).grid(row=3)
