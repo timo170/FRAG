@@ -1,0 +1,6 @@
+canvasvg
+cairosvg
+cairocffi
+requests
+tk
+tkhtmlview
