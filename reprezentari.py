@@ -7,8 +7,7 @@ import config
 
 
 def reprezentari(type):
-    config.poz=config.poz+1
-    poz=config.poz    # determinarea poziției pe ecran
+    poz=config.poz + 1    # determinarea poziției pe ecran
     tip_graf=  config.graf[0][:len(config.graf[0])-1]
     space_poz= config.graf[1].find(' ')
     nr_varfuri = int(config.graf[1][:space_poz])
