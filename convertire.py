@@ -2,6 +2,32 @@ import config
 from tkinter import filedialog as fd
 
 def deschide():
+    def verifMA(matrice): #verificare matrice de adiacenta
+        for i in range(n):
+            S=0
+            if matrice[i][i]!=0:
+                return False
+            for j in range(n):
+                if matrice[i][j]!=matrice[j][i]:
+                    return False
+                
+                if matrice[i][j]!=0 and matrice[i][j]!=1:
+                    return False
+                S=S+matrice[i][j]
+            if S > n-1:
+                return False
+        return True
+    def verifMI(matrice): #verificare matrice de incidenta
+        for j in range(m):
+            S=0
+            for i in range(n):  
+                if matrice[i][j]!=0 and matrice[i][j]!=1:
+                    return False
+                S=S+matrice[i][j]
+            if S != 2:
+                return False
+        return True
+    
     filetypes = (
         ('text files', '*.txt'),
         ('All files', '*.*')
@@ -17,8 +43,6 @@ def deschide():
         print("e o reprezentare")
         matrice=[]
         n=len(config.graf)
-        print(n)
-
         linie=config.graf[0][:config.graf[0].find('\n')].replace(' ','') #tratam primul rand
         line=list(linie)
         matrice.append(line)
@@ -40,39 +64,22 @@ def deschide():
                 print(matrice[i][j],end=" ")
             print()
         
-        if ok==1:
-            print('este matrice')
-            if n == m:
-                print('posibil matrice de adiacenta')
-                k=1
-                for i in range(n):
-                    S=0
-                    if matrice[i][i]!=0:
-                        k=0
-                        break
-                    for j in range(n):
-                        if matrice[i][j]!=matrice[j][i]:
-                            k=0
-                            break
-                        
-                        if matrice[i][j]!=0 and matrice[i][j]!=1:
-                            k=0
-                            break
-                        S=S+matrice[i][j]
-                    if S > n-1:
-                        k=0
-                        break
-
-                if k==1:
-                    print("este matrice de adiacenta")
-                else:
-                    print("nu este matrice de adiacenta")
-                
+        if ok==1: #pt ok=1 reprezentarea este o matrice de n linii si m coloane completa
+            
+            if verifMA(matrice)==True and n==m: #este matrice de adiacenta si nr. de linii este egal cu nr. de coloane
+                print("este matrice de adiacenta")
+                return
+            #este matrice de incidenta    
+            if(verifMI(matrice)==True):
+                        print("este matrice de incidenta")
+                        return
             else:
-                print("posibil matrice de incidenta")
-        else:
+                print("matrice oarecare")
+                return
+        else: #pt ok=0 reprezentarea este o matrice de n linii si m coloane incompleta
             print('lista de adiacenta')
-            print(n,m,ok)
+            print(n,m)
+            return
         
             
 
