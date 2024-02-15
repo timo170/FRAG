@@ -1,7 +1,9 @@
 import config
 from tkinter import filedialog as fd
 
+
 def deschide():
+    reprezentare=[]
     def verifMA(matrice): #verificare matrice de adiacenta
         for i in range(n):
             S=0
@@ -39,6 +41,7 @@ def deschide():
     print(tip_graf)
     if tip_graf.isnumeric() == False:
         print("e scris sub forma listei de muchii")
+        return 'LM'
     else:
         print("e o reprezentare")
         matrice=[]
@@ -67,21 +70,74 @@ def deschide():
         if ok==1: #pt ok=1 reprezentarea este o matrice de n linii si m coloane completa
             
             if verifMA(matrice)==True and n==m: #este matrice de adiacenta si nr. de linii este egal cu nr. de coloane
-                print("este matrice de adiacenta")
-                return
+                tip='MA'
+                reprezentare.append(tip)
+                reprezentare.append(n)
+                reprezentare.append(m)
+                reprezentare.append(matrice)
+                return reprezentare
             #este matrice de incidenta    
             if(verifMI(matrice)==True):
-                        print("este matrice de incidenta")
-                        return
+                        tip='MI'
+                        reprezentare.append(tip)
+                        reprezentare.append(n)
+                        reprezentare.append(m)
+                        reprezentare.append(matrice)
+                        return reprezentare
             else:
                 print("matrice oarecare")
                 return
         else: #pt ok=0 reprezentarea este o matrice de n linii si m coloane incompleta
-            print('lista de adiacenta')
-            print(n,m)
-            return
-        
+            tip='LA'
+            reprezentare.append(tip)
+            reprezentare.append(n)
+            reprezentare.append(m)
+            reprezentare.append(matrice)
+            return reprezentare
             
+def convertire(reprezentare): #converteste orice reprezentare intr-o lista de muchii(LM)      
+    graf=[]
+    tip_graf='neorientat'
+    graf.append(tip_graf)
+    tip=reprezentare[0]
+    n=reprezentare[1]
+    m=reprezentare[2]
+    graf.append([n,m])
+    matrice=reprezentare[3]
+    LM=[]
+    if tip=='MA':
+        for i in range(n):
+            for j in range(n):
+                if i<j and matrice[i][j]==1:
+                    LM.append([i+1,j+1])
+    else:
+        if tip=='MI':
+            for j in range(m):
+                muchie=[]
+                for i in range(n):
+                    if matrice[i][j]==1:
+                        muchie.append(i+1)
+                LM.append(muchie)
+        else:
+            if tip=='LA':
+                for i in range(n):
+                    muchie=[]
+                    for j in range(len(matrice[i])):
+                        x=i+1
+                        y=matrice[i][j]
+                        if ([x,y] in LM or [y,x] in LM)==False:
+                            LM.append([x,y])
+    
+    for i in range(len(LM)):
+        graf.append(LM[i])
+    return graf      
 
 
-deschide()
+
+                    
+                
+
+
+reprezentare=deschide()
+graf=convertire(reprezentare)
+print(graf)
