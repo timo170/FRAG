@@ -8,6 +8,7 @@ import tempfile
 import canvasvg
 import cairosvg
 import config 
+import convertire
 
 t_desen=turtle.Turtle()
 t_matrice = turtle.Turtle()
@@ -24,6 +25,7 @@ def deschide():
     r = 20
     config.graf = filename.readlines()
     config.poz=-1
+    convertire.functie()
     print(config.graf)
     tip_graf=  config.graf[0][:len(config.graf[0])-1]
     space_poz= config.graf[1].find(' ')
