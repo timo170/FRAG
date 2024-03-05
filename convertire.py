@@ -1,6 +1,7 @@
 import config
 from tkinter import filedialog as fd
 
+#citesc din fisier tipul grafului si apoi reprezentarea
 
 def deschide():
     reprezentare=[]
