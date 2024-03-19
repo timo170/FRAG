@@ -6,19 +6,23 @@ from tkinter import filedialog as fd
 def deschide():
     reprezentare=[]
     def verifMA(matrice): #verificare matrice de adiacenta
+        global tip_graf
+        if n!=m:
+            return False
         for i in range(n):
             S=0
             if matrice[i][i]!=0:
                 return False
             for j in range(n):
-                if matrice[i][j]!=matrice[j][i]:
-                    return False
-                
+                if tip_graf=="neorientat":
+                    if matrice[i][j]!=matrice[j][i]: #verificam simetria matricei pt graf neorientat
+                        return False
                 if matrice[i][j]!=0 and matrice[i][j]!=1:
                     return False
                 S=S+matrice[i][j]
             if S > n-1:
                 return False
+                
         return True
     def verifMI(matrice): #verificare matrice de incidenta
         for j in range(m):
@@ -30,7 +34,7 @@ def deschide():
             if S != 2:
                 return False
         return True
-    '''
+    
     filetypes = (
         ('text files', '*.txt'),
         ('All files', '*.*')
@@ -38,45 +42,40 @@ def deschide():
     
     filename = fd.askopenfile(title='Deschide un fisier', initialdir='/',filetypes=filetypes)
     config.graf = filename.readlines()
-    print(config.graf)'''
+    print(config.graf)
     tip_graf= config.graf[0][:len(config.graf[0])-1]
-    tip_graf=tip_graf.replace(' ','')
-    print(tip_graf)
-    if tip_graf.isnumeric() == False:
+    tip_reprezentare=config.graf[1][:len(config.graf[1])-1]
+    tip_reprezentare=tip_reprezentare.replace(' ','')
+    print(tip_graf,tip_reprezentare)
+    if tip_reprezentare.isnumeric() == True:
         print("e scris sub forma listei de muchii")
-        return 0
+        return 1
     else:
-        print("e o reprezentare")
-        matrice=[]
-        n=len(config.graf)
-        linie=config.graf[0][:config.graf[0].find('\n')].replace(' ','') #tratam primul rand
-        line=list(linie)
-        matrice.append(line)
-        ok=1
-        for i in range(1,n-1):  #tratam randurile din mijloc
-            linie=config.graf[i][:config.graf[i].find('\n')].replace(' ','')
-            line=list(linie)
-            matrice.append(line)
-        linie=config.graf[n-1].replace(' ','') #tratam ultimul rand care nu are \n la sfarsit
-        line=list(linie)
-        matrice.append(line)
-        m=len(matrice[0])    
-        for i in range(n):
-            matrice[i]=list(map(int,matrice[i])) #convertesc toate elementele matricei din str in int
-            if len(matrice[i])>m:
-                m=len(matrice[i])
-                ok=0
-            for j in range(len(matrice[i])):
-                print(matrice[i][j],end=" ")
-            print()
-        
-        if ok==1: #pt ok=1 reprezentarea este o matrice de n linii si m coloane completa
+        print(tip_reprezentare)
+        LM=[]
+        if tip_reprezentare=="MA":
+            matrice=[]
+            n=len(config.graf)-2 #nr de linii ale matricei
+            linie=config.graf[0][:config.graf[0].find('\n')].replace(' ','') #tratam primul rand
+            linie=list(map(int,linie))
+            matrice.append(linie)
+            ok=1
+            for i in range(2,n):  #tratam randurile din mijloc
+                linie=config.graf[i][:config.graf[i].find('\n')].replace(' ','')
+                linie=list(map(int,linie))
+                matrice.append(linie)
+            linie=config.graf[n].replace(' ','') #tratam ultimul rand care nu are \n la sfarsit
+            linie=list(map(int,linie))
+            matrice.append(linie)
+            m=len(matrice[0])
+
             
-            if verifMA(matrice)==True and n==m: #este matrice de adiacenta si nr. de linii este egal cu nr. de coloane
+            if verifMA(matrice)==True: #este matrice de adiacenta si nr. de linii este egal cu nr. de coloane
                 tip='MA'
-                reprezentare.append(tip)
+                reprezentare.append(tip_graf)
                 reprezentare.append(n)
-                reprezentare.append(m)
+                reprezentare.append(m)   ########################################## am ramas aici
+                                         ####punem acum in LM tipul garfului,reprezentarii, nr noduri si nr muchii
                 reprezentare.append(matrice)
                 return reprezentare
             #este matrice de incidenta    
@@ -142,3 +141,4 @@ def functie():
         config.graf=graf
         print(graf)
 
+functie()
