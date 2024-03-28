@@ -26,7 +26,6 @@ def deschide():
     config.graf = filename.readlines()
     config.poz=-1
     convertire.functie()
-    print(config.graf)
     tip_graf=  config.graf[0][:len(config.graf[0])-1]
     space_poz= config.graf[1].find(' ')
     nr_varfuri = int(config.graf[1][:space_poz])

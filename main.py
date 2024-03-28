@@ -41,7 +41,7 @@ def program_start():
     fileMenu.add_command(label="Iesire", command=df.exitProgram)
     meniu.add_cascade(label="Fisier", menu=fileMenu)
     reprezMenu=tk.Menu(meniu)
-    reprezMenu.add_command(label="Matrice adiacenta", command= lambda :rep.reprezentari('matrice'))
+    reprezMenu.add_command(label="Matrice adiacenta", command= lambda :rep.reprezentari('adiacenta'))
     reprezMenu.add_command(label="Liste adiacenta", command= lambda :rep.reprezentari('liste'))
     reprezMenu.add_command(label="Matrice incidenta",command=lambda :rep.reprezentari('incidenta'))
     reprezMenu.add_command(label="Grade noduri",command=lambda :rep.reprezentari('grade'))

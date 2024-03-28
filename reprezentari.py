@@ -1,7 +1,6 @@
 import turtle
 from tkinter import ttk
 import tkinter as tk
-from tkhtmlview import HTMLLabel
 from deschide_fisier import t_matrice, t_liste, t_incidenta
 import config
 
@@ -13,8 +12,8 @@ def reprezentari(type):
     space_poz= config.graf[1].find(' ')
     nr_varfuri = int(config.graf[1][:space_poz])
     nr_perechi  = int(config.graf[1][space_poz:])
-    DY= turtle.window_height() / 2 - 10 -(nr_varfuri-2) * 30 * poz
-    if type == 'matrice':
+    DY= turtle.window_height() / 2 - 25 -(nr_varfuri-2) * 30 * poz 
+    if type == 'adiacenta':
         
         matrice = []
         for i in range(nr_varfuri+1):
@@ -53,7 +52,7 @@ def reprezentari(type):
             t_matrice.goto(dx,dy)
             t_matrice.pendown()
             t_matrice.write(afisare[i], font=("Verdana",12, "normal"))
-        dx=50-turtle.window_width() / 2 + 20*(nr_varfuri - 1 )
+        dx=50-turtle.window_width() / 2 + 20*(nr_varfuri-1 ) +10
         dy=DY
         t_matrice.penup()
         t_matrice.goto(dx,dy)
@@ -106,7 +105,7 @@ def reprezentari(type):
 
     if type=="incidenta": 
         dx=10-turtle.window_width() / 2
-        dy=DY- 15 + nr_varfuri*5 -120
+        dy=DY- 15 + nr_varfuri*15 -120
         t_incidenta.penup()
         t_incidenta.goto(dx,dy)
         t_incidenta.pendown()
@@ -161,7 +160,7 @@ def reprezentari(type):
             t_incidenta.goto(dx,dy)
             t_incidenta.pendown()
             t_incidenta.write(afisare[i], font=("Verdana",12, "normal"))
-        dx=55 -turtle.window_width() / 2 + 24*(nr_perechi-1)
+        dx=55 -turtle.window_width() / 2 + 24*(nr_perechi-1)+12
         dy=DY
         t_incidenta.penup()
         t_incidenta.goto(dx,dy)
